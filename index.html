@@ -50,12 +50,10 @@
           .filter((tool) => tool.availability !== "retired")
           .map((tool) => `
             <a href="tool.html?id=${encodeURIComponent(tool.id)}" class="group flex flex-col rounded-card border border-border bg-surface-raised p-md transition hover:-translate-y-xs hover:border-accent hover:shadow-md">
-              <div class="flex items-start justify-between gap-sm">
-                <img src="images/${tool.category}.svg" alt="" class="size-xl" width="40" height="40">
-                <span class="rounded-full px-sm py-xs text-xs font-medium ${availabilityClasses[tool.availability]}">${availabilityLabels[tool.availability]}</span>
-              </div>
+              <img src="images/${tool.category}.svg" alt="" class="size-xl" width="40" height="40">
               <p class="mt-lg text-xs font-medium uppercase tracking-wide text-ink-muted">${categories.get(tool.category)}</p>
               <h2 class="mt-xs font-display text-lg font-semibold group-hover:text-accent">${tool.name}</h2>
+              <span class="mt-sm self-start rounded-full px-sm py-xs text-xs font-medium ${availabilityClasses[tool.availability]}">${availabilityLabels[tool.availability]}</span>
             </a>
           `)
           .join("");
