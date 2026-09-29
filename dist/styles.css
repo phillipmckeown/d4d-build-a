@@ -211,6 +211,9 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .mx-md {
+    margin-inline: var(--spacing-md);
+  }
   .mt-lg {
     margin-top: var(--spacing-lg);
   }
@@ -222,6 +225,9 @@
   }
   .mb-lg {
     margin-bottom: var(--spacing-lg);
+  }
+  .mb-md {
+    margin-bottom: var(--spacing-md);
   }
   .mb-xs {
     margin-bottom: var(--spacing-xs);
@@ -235,12 +241,18 @@
   .grid {
     display: grid;
   }
+  .aspect-\[4\/3\] {
+    aspect-ratio: 4/3;
+  }
   .size-xl {
     width: var(--spacing-xl);
     height: var(--spacing-xl);
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-full {
+    width: 100%;
   }
   .max-w-2xl {
     max-width: var(--container-2xl);
@@ -257,17 +269,14 @@
   .items-center {
     align-items: center;
   }
-  .items-start {
-    align-items: flex-start;
-  }
   .justify-between {
     justify-content: space-between;
   }
+  .justify-center {
+    justify-content: center;
+  }
   .gap-lg {
     gap: var(--spacing-lg);
-  }
-  .gap-sm {
-    gap: var(--spacing-sm);
   }
   .self-start {
     align-self: flex-start;
@@ -306,9 +315,6 @@
   }
   .bg-surface-raised {
     background-color: var(--color-surface-raised);
-  }
-  .p-md {
-    padding: var(--spacing-md);
   }
   .px-md {
     padding-inline: var(--spacing-md);

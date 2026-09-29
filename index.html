@@ -38,6 +38,19 @@
       checked_out: "bg-status-out-bg text-status-out",
       repair: "bg-status-repair-bg text-status-repair"
     };
+    const getStatusDetail = (tool) => {
+      if (tool.availability === "checked_out") {
+        const dueBack = new Date(`${tool.due_back}T00:00:00`);
+        return `Due back ${dueBack.toLocaleDateString("en-US", { month: "long", day: "numeric" })}`;
+      }
+      if (tool.availability === "repair") return "Currently unavailable";
+
+      const details = [];
+      if (tool.members_only) details.push("Members only");
+      if (tool.requires_orientation) details.push("Orientation required");
+      if (tool.deposit > 0) details.push(`Deposit $${tool.deposit}`);
+      return details.length ? details.join(". ") : "No deposit";
+    };
 
     fetch("data/tools.json")
       .then((response) => {
@@ -49,11 +62,14 @@
         catalogGrid.innerHTML = catalog.tools
           .filter((tool) => tool.availability !== "retired")
           .map((tool) => `
-            <a href="tool.html?id=${encodeURIComponent(tool.id)}" class="group flex flex-col rounded-card border border-border bg-surface-raised p-md transition hover:-translate-y-xs hover:border-accent hover:shadow-md">
-              <img src="images/${tool.category}.svg" alt="" class="size-xl" width="40" height="40">
-              <p class="mt-lg text-xs font-medium uppercase tracking-wide text-ink-muted">${categories.get(tool.category)}</p>
-              <h2 class="mt-xs font-display text-lg font-semibold group-hover:text-accent">${tool.name}</h2>
-              <span class="mt-sm self-start rounded-full px-sm py-xs text-xs font-medium ${availabilityClasses[tool.availability]}">${availabilityLabels[tool.availability]}</span>
+            <a href="tool.html?id=${encodeURIComponent(tool.id)}" class="group flex flex-col rounded-card border border-border bg-surface-raised transition hover:-translate-y-xs hover:border-accent hover:shadow-md">
+              <div class="flex aspect-[4/3] w-full items-center justify-center bg-surface">
+                <img src="images/${tool.category}.svg" alt="" class="size-xl" width="40" height="40">
+              </div>
+              <p class="mx-md mt-lg text-xs font-medium uppercase tracking-wide text-ink-muted">${categories.get(tool.category)}</p>
+              <h2 class="mx-md mt-xs font-display text-lg font-semibold group-hover:text-accent">${tool.name}</h2>
+              <span class="mx-md mt-sm self-start rounded-full px-sm py-xs text-xs font-medium ${availabilityClasses[tool.availability]}">${availabilityLabels[tool.availability]}</span>
+              <p class="mx-md mb-md mt-sm text-sm text-ink">${getStatusDetail(tool)}</p>
             </a>
           `)
           .join("");
