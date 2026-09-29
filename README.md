@@ -1,6 +1,6 @@
 # Sixth Ward Tool Library
 
-`[Your name]`
+`Phillip McKeown`
 
 A three-screen static site for a neighborhood tool lending library. Members browse the catalog, open a tool, and place a hold for pickup.
 
@@ -45,4 +45,4 @@ Open the site through that address rather than double-clicking `index.html`. The
 
 ## Tools used
 
-`[Name the AI coding tool you used and how you used it. This is the disclosure line, and it stays in the README for the rest of the term.]`
+``
